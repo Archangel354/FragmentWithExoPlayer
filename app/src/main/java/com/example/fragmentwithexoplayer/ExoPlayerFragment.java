@@ -45,32 +45,24 @@ public class ExoPlayerFragment extends Fragment {
         // Required empty public constructor
     }
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         String urlString = "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4";
 
+        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_exo_player, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-                //Uri myUri = Uri.parse(urlString);
 
         Uri anyUri = Uri.parse(urlString);
         Log.i("StepDetailActivity", "urlString: " + urlString + ".");
         if (urlString.isEmpty()) {
-
             mPlayerView.setVisibility(View.GONE);
             //imgNoVideo.setVisibility(View.VISIBLE);
         }
         else {
             // Initialize the player view
-            //mPlayerView = getView().findViewById(R.id.imgInstructionVideo);
             mPlayerView.setVisibility(View.VISIBLE);
-            //imgNoVideo.setVisibility(View.GONE);
             mPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), new DefaultTrackSelector());
             mPlayerView.setPlayer(mPlayer);
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(
@@ -78,12 +70,10 @@ public class ExoPlayerFragment extends Fragment {
                     Util.getUserAgent(getContext(), getString(R.string.app_name)));
             ExtractorMediaSource mediaSource = new ExtractorMediaSource.Factory(dataSourceFactory)
                     .createMediaSource(anyUri);
-
             mPlayer.prepare(mediaSource);
             mPlayer.setPlayWhenReady(true);
         }
         return rootView;
-
     }
 
     @Override
